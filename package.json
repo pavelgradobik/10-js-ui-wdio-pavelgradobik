@@ -1,0 +1,32 @@
+{
+  "name": "10-js-ui-wdio-pavelgradobik",
+  "version": "1.0.0",
+  "description": "Demo proj for 10-js-ui-wdio students",
+  "scripts": {
+    "test": "wdio wdio.conf.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StartITProtractorJS/10-js-ui-wdio-pavelgradobik.git"
+  },
+  "keywords": [],
+  "author": "Pavlo Gradobik <gradobik@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/StartITProtractorJS/10-js-ui-wdio-pavelgradobik/issues"
+  },
+  "homepage": "https://github.com/StartITProtractorJS/10-js-ui-wdio-pavelgradobik#readme",
+  "dependencies": {
+    "@wdio/cli": "^7.0.7"
+  },
+  "devDependencies": {
+    "@wdio/local-runner": "^7.0.7",
+    "@wdio/mocha-framework": "^7.0.7",
+    "@wdio/spec-reporter": "^7.0.7",
+    "@wdio/sync": "^7.0.7",
+    "chromedriver": "^88.0.0",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.5",
+    "wdio-chromedriver-service": "^7.0.0"
+  }
+}
