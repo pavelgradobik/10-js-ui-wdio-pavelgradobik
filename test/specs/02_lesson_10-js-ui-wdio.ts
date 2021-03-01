@@ -31,11 +31,11 @@ describe.skip("Product return", function () {
     const returnCommentInput = $('#input-comment');
     const submitButton = $('[value="Submit"]');
     // const returnMessage = 'Product Returns';
-
     const productReturnsHeadMessage = $('//h1[text()="Product Returns"]');
     const productReturnTextMessage = $('//p[text()="Thank you for submitting your return request. Your request has been sent to the relevant department for processing."]');
     const continueButton =$('#content a[href*="home"]');
-    
+    //#endregion
+
     //#region test
     browser.url("/index.php?route=account/return/add");
     browser.pause(500);
@@ -67,7 +67,7 @@ describe.skip("Product return", function () {
 
 // http://93.126.97.71:10082/index.php?route=account/voucher
 // this test gives you 20 points
-describe("Gift Certificate", function () {
+describe.skip("Gift Certificate", function () {
   it("can be purchased", function () {
     //#region voucher page elements
     const recipientsNameInput = $('#input-to-name');
@@ -112,9 +112,32 @@ describe("Gift Certificate", function () {
                                                                                                                                                                                                                                          
 // this test gives you 20 points
 // http://93.126.97.71:10082/index.php?route=information/contact                                                                                                                                                                                                                                                                               
-describe.skip("Contact us form", function () {
+describe("Contact us form", function () {
   it("must send messages to shop administration", function () {                                  
-    throw new Error("NOT IMPLEMENTED");
+    
+    //#region Contact Us page elements
+    const yourNameInput = $('#input-name');
+    const emailAdressInput = $('#input-email');
+    const enquiryUnput = $('#input-enquiry');
+    const contactFormTitle = $('legend');
+    const submitButton = $('[value="Submit"]');
+    const continueButton = $('//a[text()="Continue"]')
+    //#endregion
+
+    //#region test
+    browser.url("/index.php?route=information/contact");
+    browser.pause(500);
+
+    yourNameInput.setValue(Math.random().toString(36).substring(3));
+    emailAdressInput.setValue(`${Math.random().toString(36).substring(3)}@mail.mail`);
+    enquiryUnput.setValue(Math.random().toString(36).substring(2));
+    submitButton.click();
+    browser.pause(400);
+
+    expect(contactFormTitle).not.toBeDisplayed();
+    expect(continueButton).toBeDisplayed();
+    expect(browser.getUrl()).toContain('/success');
+    //#endregion
   });
 });
 
