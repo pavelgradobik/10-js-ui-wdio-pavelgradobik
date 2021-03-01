@@ -12,8 +12,8 @@ import * as crypto from 'crypto'
 // this test gives you 20 points
 // http://93.126.97.71:10082/index.php?route=account/return/add
 // Notice that datepicker is optional
-describe("Product return", function () {
-  it("can be submited", function () {
+describe.skip("Product return", function () {
+  it.skip("can be submited", function () {
 
     //#region return page elements
     const firstNameInput = $('#input-firstname');
@@ -30,12 +30,13 @@ describe("Product return", function () {
     const productOpenedCheckbox = $('//input[@name="opened" and @value=1]')
     const returnCommentInput = $('#input-comment');
     const submitButton = $('[value="Submit"]');
+    // const returnMessage = 'Product Returns';
 
     const productReturnsHeadMessage = $('//h1[text()="Product Returns"]');
     const productReturnTextMessage = $('//p[text()="Thank you for submitting your return request. Your request has been sent to the relevant department for processing."]');
     const continueButton =$('#content a[href*="home"]');
+    
     //#region test
-
     browser.url("/index.php?route=account/return/add");
     browser.pause(500);
 
@@ -66,9 +67,46 @@ describe("Product return", function () {
 
 // http://93.126.97.71:10082/index.php?route=account/voucher
 // this test gives you 20 points
-describe.skip("Gift Certificate", function () {
+describe("Gift Certificate", function () {
   it("can be purchased", function () {
-    throw new Error("NOT IMPLEMENTED");
+    //#region voucher page elements
+    const recipientsNameInput = $('#input-to-name');
+    const recipientsEmailInput = $('#input-to-email');
+    const yourNameInput = $('#input-from-name');
+    const yourEmailInput = $('#input-from-email');
+    const giftCertificateOptions = $('.radio');
+    const birthdayRadiobutton = '[value="7"]';
+    const cristmasRadiobutton = '[value="6"]';
+    const generalRadiobutton = '[value="8"]';
+    const messageInput = $('#input-message');
+    const giftAmountInput = $('#input-amount');
+    const acceptContiotionsCheckbox = $('[name="agree"]');
+    const continueButton = $('[value="Continue"]');
+
+    const successPurchaseTitleMessage = 'Purchase a Gift Certificate';
+    const successPurchaseMessage = 'Thank you for purchasing a gift certificate! Once you have completed your order your gift certificate recipient will be sent an e-mail with details how to redeem their gift certificate.';
+
+    //#endregion
+
+    //#region test
+    browser.url("/index.php?route=account/voucher");
+    browser.pause(500);
+
+    recipientsNameInput.setValue(Math.random().toString(36).substring(3));
+    recipientsEmailInput.setValue(`${Math.random().toString(36).substring(3)}@mail.mail`);
+    yourNameInput.setValue(Math.random().toString(36).substring(3));
+    yourEmailInput.setValue(`${Math.random().toString(36).substring(3)}@mail.mail`);
+    giftCertificateOptions.$(birthdayRadiobutton).click();
+    messageInput.setValue(Math.random().toString(36).substring(3));
+    giftAmountInput.clearValue();
+    giftAmountInput.setValue('10');
+    acceptContiotionsCheckbox.click();
+    continueButton.click();
+    browser.pause(200);
+
+    expect($('#content h1').getText()).toEqual(successPurchaseTitleMessage);
+    expect($('#content p').getText()).toEqual(successPurchaseMessage);
+    //#endregion
   });   
 });
                                                                                                                                                                                                                                          
