@@ -157,7 +157,7 @@ describe("Contact us form", function () {
     const enquiryUnput = $("#input-enquiry");
     const contactFormTitle = $("legend");
     const submitButton = $('[value="Submit"]');
-    const continueButton = $('//a[text()="Continue"]');
+    const continueButton = $('a=Continue');
 
     //#endregion
 
