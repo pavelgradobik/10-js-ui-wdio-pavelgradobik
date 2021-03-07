@@ -69,6 +69,8 @@ describe("Items", function () {
         let wishListMessageLink = $(`a[href*=${product.link}]`);
         const removeButton = $('[data-original-title="Remove"]');
         const emptyWishlist = $('#content p');
+        // const myAccountButton = $('[title="My Account"]');
+        // const logoutButton = $('a=Logout');
         //#endregion
 
         //#region test
@@ -91,6 +93,8 @@ describe("Items", function () {
         expect(emptyWishlist).not.toBeDisplayed();
         
         removeButton.click();
+        // myAccountButton.click();
+        // logoutButton.click();
         //#endregion
    
       });
@@ -104,7 +108,7 @@ describe("Items", function () {
       //#region locarors
       let compateproductButton = $(`//div[h4/a[text()="${product.name}"]]/following-sibling::div/button[@data-original-title="Compare this Product"]`);   //the most easy way 
       let compareProductMessageLink = $(`a[href*=${product.link}]`);
-      const productCompareLink = $('i ~ a[href*=compare]');
+      const productCompareLink = $('a=product comparison');
       const productAtCompareTable = $('a > strong');
       const productImageAtcompareTable = $(`img[title="${product.name}"]`);
       const removeFromCompareButton = $('a=Remove');
@@ -118,9 +122,8 @@ describe("Items", function () {
       browser.pause(1200);
 
       compateproductButton.click();
-      expect(compareProductMessageLink).toBeDisplayed();
-      productCompareLink.click();
-      browser.pause(300);
+      productCompareLink.click()
+      browser.pause(500);
 
       expect(productAtCompareTable.getText()).toEqual(product.name);
       expect(productImageAtcompareTable).toBeDisplayed();
@@ -131,19 +134,20 @@ describe("Items", function () {
 
     });
   });
+
   productsToWishList.map((product) => {
 
-    it("can be selected for comparison by guest", function () {
+    it.skip("can be selected for comparison by guest", function () {
 
       //#region locarors
       let compateproductButton = $(
         `//div[h4/a[text()="${product.name}"]]/following-sibling::div/button[@data-original-title="Compare this Product"]`
       ); //the most easy way
       let compareProductMessageLink = $(`a[href*=${product.link}]`);
-      const productCompareLink = $("i ~ a[href*=compare]");
-      const productAtCompareTable = $("a > strong");
+      const productCompareLink = $('i ~ a[href*=compare]');
+      const productAtCompareTable = $('a > strong');
       const productImageAtcompareTable = $(`img[title="${product.name}"]`);
-      const removeFromCompareButton = $("a=Remove");
+      const removeFromCompareButton = $('a=Remove');
       const myAccountButton = $('[title="My Account"]');
       const loginButton = $('a=Login');
       //#endregion
@@ -155,10 +159,11 @@ describe("Items", function () {
 
       myAccountButton.click();
       expect(loginButton).toBeDisplayed();
-      
+      productCompareLink.click()
       compateproductButton.click();
+      browser.pause(500);
       expect(compareProductMessageLink).toBeDisplayed();
-      productCompareLink.click();
+      
       browser.pause(300);
 
       expect(productAtCompareTable.getText()).toEqual(product.name);
@@ -169,7 +174,49 @@ describe("Items", function () {
     });
   });
 
-  it.skip("can be added to cart by guest", function () {});
+  productsToWishList.map((product) => {
+    
+    it("can be added to cart by guest", function () {
+  
+      //#region locators
+      const addToCartButton = $('#button-cart');
+      let selectProduct = $(`h4>a[href*=${product.link}]`);
+      const shoppingCartDropdown = $('#cart');
+      const shoppingCartLink = $('[title="Shopping Cart"]');
+      const productImageAtCartDropDown = $(`img[title="${product.name}"]`);
+      let productLinkFromCartDropDown = $(`a=${product.name}`);
+      const shoppingCartTitle = $('#content h1');
+      const removeFromCartButton = $('[data-original-title="Remove"]');
+      //#endregion
+
+      //#region test
+      browser.url('http://93.126.97.71:10082/mp3-players');  
+      browser.pause(1000);
+      
+      selectProduct.click();
+      browser.pause(500)
+      addToCartButton.click();
+      browser.pause(200);
+
+      shoppingCartDropdown.click();
+      expect(productImageAtCartDropDown).toBeDisplayed();
+      expect(productLinkFromCartDropDown).toBeDisplayed();
+
+      shoppingCartLink.click();
+      browser.pause(1000);
+
+      expect(shoppingCartTitle).toBeDisplayed();
+      expect(shoppingCartTitle).toHaveTextContaining('Shopping Cart');
+      expect(productLinkFromCartDropDown).toExist();
+
+      removeFromCartButton.click();
+
+
+
+      //#endregion
+    });
+
+  });
 
   it.skip("can be added to cart by registered user", function () {});
 });
