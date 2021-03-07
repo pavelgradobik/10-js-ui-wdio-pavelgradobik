@@ -72,6 +72,7 @@ describe("Items", function () {
         let productInWishListTable = $(`img[title="${product.name}"]`);
         let wishListMessageLink = $(`a[href*=${product.link}]`);
         const removeButton = $('[data-original-title="Remove"]');
+        const emptyWishlist = $('#content p');
         //#endregion
 
         //#region test
@@ -90,6 +91,7 @@ describe("Items", function () {
         wishListLink.click();
         browser.pause(200);
         expect(productInWishListTable).toBeDisplayed();
+        expect(emptyWishlist).not.toBeDisplayed();
         
         removeButton.click();
         //#endregion
