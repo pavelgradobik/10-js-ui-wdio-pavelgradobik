@@ -53,17 +53,13 @@ describe("Items", function () {
     //#endregion
   });
 
-  beforeEach(function() {
+  afterEach(function() {
     browser.deleteAllCookies();
   });
 
   productsToWishList.map((product) => {
 
-      it("can be added to wishlist", function () {
-
-        // let addWishListSuccessMessage = `Success: You have added ${product.name} to your wish list!`;
-        const emptywishlistMessage = 'Your wish list is empty.';
-        
+      it.skip("can be added to wishlist", function () {
 
         //#region locators
         const addToWishListButton = $('[data-original-title="Add to Wish List"]');
@@ -90,6 +86,7 @@ describe("Items", function () {
         
         wishListLink.click();
         browser.pause(200);
+        
         expect(productInWishListTable).toBeDisplayed();
         expect(emptyWishlist).not.toBeDisplayed();
         
@@ -100,7 +97,40 @@ describe("Items", function () {
 
   });
 
-  it.skip("can be selected for comparison by registered user", function () {});
+  productsToWishList.map((product) => {
+    
+    it.skip("can be selected for comparison by registered user", function () {
+      
+      //#region locarors
+      let compateproductButton = $(`//div[h4/a[text()="${product.name}"]]/following-sibling::div/button[@data-original-title="Compare this Product"]`);   //the most easy way 
+      let compareProductMessageLink = $(`a[href*=${product.link}]`);
+      const productCompareLink = $('i ~ a[href*=compare]');
+      const productAtCompareTable = $('a > strong');
+      const productImageAtcompareTable = $(`img[title="${product.name}"]`);
+      const removeFromCompareButton = $('a=Remove');
+      //#endregion
+
+      //#region test
+      browser.url("/index.php?route=account/login");
+      logIn(emailAdress, password);
+
+      browser.url("http://93.126.97.71:10082/mp3-players");  
+      browser.pause(1000);
+      
+      compateproductButton.click();
+      expect(compareProductMessageLink).toBeDisplayed();
+      productCompareLink.click();
+      browser.pause(300);
+
+      expect(productAtCompareTable.getText()).toEqual(product.name);
+      expect(productImageAtcompareTable).toBeDisplayed();
+
+      removeFromCompareButton.click();
+     
+      //#endregion
+
+    });
+  });
 
   it.skip("can be selected for comparison by guest", function () {});
 
