@@ -59,7 +59,7 @@ describe("Items", function () {
 
   productsToWishList.map((product) => {
 
-      it.skip("can be added to wishlist", function () {
+      it("can be added to wishlist", function () {
 
         //#region locators
         const addToWishListButton = $('[data-original-title="Add to Wish List"]');
@@ -106,7 +106,7 @@ describe("Items", function () {
     it("can be selected for comparison by registered user", function () {
       
       //#region locarors
-      let compateproductButton = $(`//div[h4/a[text()="${product.name}"]]/following-sibling::div/button[@data-original-title="Compare this Product"]`);   //the most easy way 
+      let addProductRocomparetButton = $(`//div[h4/a[text()="${product.name}"]]/following-sibling::div/button[@data-original-title="Compare this Product"]`);   //the most easy way 
       let compareProductMessageLink = $(`a[href*=${product.link}]`);
       const productCompareLink = $('a=product comparison');
       const productAtCompareTable = $('a > strong');
@@ -121,7 +121,8 @@ describe("Items", function () {
       browser.url('http://93.126.97.71:10082/mp3-players');  
       browser.pause(1200);
 
-      compateproductButton.click();
+      addProductRocomparetButton.click();
+      browser.pause(400);
       productCompareLink.click()
       browser.pause(500);
 
@@ -137,7 +138,7 @@ describe("Items", function () {
 
   productsToWishList.map((product) => {
 
-    it.skip("can be selected for comparison by guest", function () {
+    it("can be selected for comparison by guest", function () {
 
       //#region locarors
       let compateproductButton = $(
@@ -158,9 +159,12 @@ describe("Items", function () {
       browser.pause(1000);
 
       myAccountButton.click();
+      browser.pause(100);
       expect(loginButton).toBeDisplayed();
-      productCompareLink.click()
+      myAccountButton.click();
+      
       compateproductButton.click();
+      productCompareLink.click()
       browser.pause(500);
       expect(compareProductMessageLink).toBeDisplayed();
       
@@ -187,12 +191,18 @@ describe("Items", function () {
       let productLinkFromCartDropDown = $(`a=${product.name}`);
       const shoppingCartTitle = $('#content h1');
       const removeFromCartButton = $('[data-original-title="Remove"]');
+      const myAccountButton = $('[title="My Account"]');
+      const loginButton = $('a=Login');
       //#endregion
 
       //#region test
       browser.url('http://93.126.97.71:10082/mp3-players');  
       browser.pause(1000);
-      
+      myAccountButton.click();
+      browser.pause(100)
+      expect(loginButton).toBeDisplayed();
+      myAccountButton.click();
+
       selectProduct.click();
       browser.pause(500)
       addToCartButton.click();
@@ -210,13 +220,59 @@ describe("Items", function () {
       expect(productLinkFromCartDropDown).toExist();
 
       removeFromCartButton.click();
+      //#endregion
+    });
 
+  });
+ 
+  productsToWishList.map((product) => {
 
+    it("can be added to cart by registered user", function () {
 
+      //#region locators
+      const addToCartButton = $("#button-cart");
+      let selectProduct = $(`h4>a[href*=${product.link}]`);
+      const shoppingCartDropdown = $("#cart");
+      const shoppingCartLink = $('[title="Shopping Cart"]');
+      const productImageAtCartDropDown = $(`img[title="${product.name}"]`);
+      let productLinkFromCartDropDown = $(`a=${product.name}`);
+      const shoppingCartTitle = $("#content h1");
+      const removeFromCartButton = $('[data-original-title="Remove"]');
+      const myAccountButton = $('[title="My Account"]');
+      const logoutButton = $('a=Logout');
+      //#endregion
+
+      //#region test
+      browser.url('/index.php?route=account/login');
+      logIn(emailAdress, password);
+
+      browser.url('http://93.126.97.71:10082/mp3-players');  
+      browser.pause(1200);
+      myAccountButton.click();
+      expect(logoutButton).toBeDisplayed();
+
+      selectProduct.click();
+      browser.pause(500)
+      addToCartButton.click();
+      browser.pause(200);
+
+      shoppingCartDropdown.click();
+      expect(productImageAtCartDropDown).toBeDisplayed();
+      expect(productLinkFromCartDropDown).toBeDisplayed();
+
+      shoppingCartLink.click();
+      browser.pause(1000);
+
+      expect(shoppingCartTitle).toBeDisplayed();
+      expect(shoppingCartTitle).toHaveTextContaining('Shopping Cart');
+      expect(productLinkFromCartDropDown).toExist();
+      expect(productImageAtCartDropDown).toExist();
+
+      removeFromCartButton.click();
       //#endregion
     });
 
   });
 
-  it.skip("can be added to cart by registered user", function () {});
+
 });
