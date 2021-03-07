@@ -9,6 +9,10 @@ describe("Items", function () {
   const emailAdress = `${Math.random().toString(36).substring(3)}@mail.mail`;
   const password = Math.random().toString(36).substring(3);
   
+  type ProdList = {
+    name: string;
+    link: string;
+  }
   
   function logIn(mail: string, password: string) {
     
@@ -21,7 +25,7 @@ describe("Items", function () {
     loginButton.click();
   }
 
-  const productsToWishList: string[] = ['iPod Classic','iPod Nano', 'iPod Shuffle', 'iPod Touch'];
+  const productsToWishList: Array<ProdList> = [{name: 'iPod Classic', link: 'ipod-classic'}, {name: 'iPod Nano', link: 'ipod-nano'}, {name: 'iPod Shuffle', link: 'ipod-shuffle'},{name: 'iPod Touch', link: 'ipod-touch'}];
 
   before(function () {
     //#region register/login page locators
@@ -49,23 +53,47 @@ describe("Items", function () {
     //#endregion
   });
 
-  beforeEach(function () {
-    browser.reloadSession();
-  });
-
-  afterEach(function () {
+  beforeEach(function() {
     browser.deleteAllCookies();
   });
 
   productsToWishList.map((product) => {
 
       it("can be added to wishlist", function () {
+
+        // let addWishListSuccessMessage = `Success: You have added ${product.name} to your wish list!`;
+        const emptywishlistMessage = 'Your wish list is empty.';
+        
+
+        //#region locators
+        const addToWishListButton = $('[data-original-title="Add to Wish List"]');
+        const wishListLink = $('#wishlist-total');
+        let selectProduct = $(`h4>a[href*=${product.link}]`);
+        let productInWishListTable = $(`img[title="${product.name}"]`);
+        let wishListMessageLink = $(`a[href*=${product.link}]`);
+        const removeButton = $('[data-original-title="Remove"]');
+        //#endregion
+
+        //#region test
         browser.url("/index.php?route=account/login");
         logIn(emailAdress, password);
+              
         browser.url("/mp3-players");
-    
-        $(`a=${product}`).click();
-        browser.pause(2000);
+        browser.pause(500);
+        
+        selectProduct.click();
+        browser.pause(500);
+        addToWishListButton.click();
+        
+        expect(wishListMessageLink).toBeDisplayed();
+        
+        wishListLink.click();
+        browser.pause(200);
+        expect(productInWishListTable).toBeDisplayed();
+        
+        removeButton.click();
+        //#endregion
+   
       });
 
   });
