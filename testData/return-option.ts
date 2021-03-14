@@ -1,4 +1,4 @@
 interface IReturnOption {
     returnName: string;
-    elemNumber: number;
+    elemNumber: string;
 }
