@@ -1,6 +1,12 @@
+import { ReturnPageComponents } from "./components/return-page.componets";
 
 export class ReturnPage {
     
+    pageReturnComponents: ReturnPageComponents;
+    constructor(){
+        this.pageReturnComponents = new ReturnPageComponents();
+    }
+
     open(url: string){
         browser.url(url);
     }
@@ -11,19 +17,19 @@ export class ReturnPage {
 
     fillReturnForm(fillData: IProductReturn){
 
-        $('#input-firstname').setValue(fillData.firstName);
-        $('#input-lastname').setValue(fillData.lastName);
-        $('#input-email').setValue(fillData.email);
-        $('#input-telephone').setValue(fillData.telephone);
-        $('#input-order-id').setValue(fillData.orderId);
-        $('i.fa.fa-calendar').click();
-        expect($('[class="day active today"]')).toBeDisplayed({message: 'Current date selector is not available'});
-        $('[class="day active today"]').click();
-        $("#input-product").setValue(fillData.productName);
-        $("#input-model").setValue(fillData.productCode);
-        $("#input-quantity").setValue(fillData.quantity);
-        $(`[name="return_reason_id"][value="${fillData.returnReason}"]`).click();
-        $("#input-comment").setValue(fillData.otherDetails);
+        this.pageReturnComponents.firstNameInput.setValue(fillData.firstName);
+        this.pageReturnComponents.lastNameInput.setValue(fillData.lastName);
+        this.pageReturnComponents.emailInput.setValue(fillData.email);
+        this.pageReturnComponents.telephoneinput.setValue(fillData.telephone);
+        this.pageReturnComponents.orderIdInput.setValue(fillData.orderId);
+        this.pageReturnComponents.calendarCallButton.click();
+        expect(this.pageReturnComponents.calendarCallButton).toBeDisplayed({message: 'Current date selector is not available'});
+        this.pageReturnComponents.currentDateSelector.click();
+        this.pageReturnComponents.productNameInput.setValue(fillData.productName);
+        this.pageReturnComponents.productCodeInput.setValue(fillData.productCode);
+        this.pageReturnComponents.productQuantityInput.setValue(fillData.quantity);
+        this.pageReturnComponents.returnReasonSelector(fillData.returnReason).click();
+        this.pageReturnComponents.otherDetailsInput.setValue(fillData.otherDetails);
        
     }
 
