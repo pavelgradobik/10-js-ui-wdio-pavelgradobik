@@ -1,4 +1,5 @@
-import { GiftVoucherConfirmationPage } from "./pages/gift-voucher-send-confirmation";
+import { ContactUsPage } from "./pages/contact-us.page";
+import { GiftVoucherConfirmationPage } from "./pages/gift-voucher-send-confirmation.page";
 import { GiftVoucherPage } from "./pages/gift-voucher.page";
 import { ReturnConfirmationPage } from "./pages/return-confirmation.page";
 import { ReturnPage } from "./pages/return.page";
@@ -8,11 +9,13 @@ export class App {
     returnConfirmation: ReturnConfirmationPage;
     giftVoucherPage: GiftVoucherPage;
     giftVoucherConfirmation: GiftVoucherConfirmationPage;
+    contactUS: ContactUsPage;
 
     constructor(){
         this.returnPage = new ReturnPage();
         this.returnConfirmation = new ReturnConfirmationPage();
         this.giftVoucherPage = new GiftVoucherPage();
         this.giftVoucherConfirmation = new GiftVoucherConfirmationPage();
+        this.contactUS = new ContactUsPage();
     }
 }

@@ -66,3 +66,22 @@ describe("Gift Certificate", function () {
     });
   });
 });
+
+describe("Contact us form", function () {
+  it("must send messages to shop administration", function () {
+    const app = new App();
+
+    app.contactUS.open('/index.php?route=information/contact');
+    browser.waitUntil(() => app.contactUS.hasOpened(), {
+      timeoutMsg: "Expected return page is opened",
+    });
+
+    app.contactUS.fillContactUsFormAndSubmit({
+        yourName: Math.random().toString(36).substring(3),
+        emailAdress: `${Math.random().toString(36).substring(3)}@mail.mail`,
+        enquiry: Math.random().toString(36).substring(3)
+    })
+
+    expect($('#content h3')).not.toBeVisible();
+  });
+});
