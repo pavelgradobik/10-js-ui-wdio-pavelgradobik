@@ -1,4 +1,4 @@
-import { ReturnPageComponents } from "./components/return-page.componets";
+import { ReturnPageComponents } from "./components/return-page.component";
 
 export class ReturnPage {
     
