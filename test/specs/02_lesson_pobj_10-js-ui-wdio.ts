@@ -85,3 +85,34 @@ describe("Contact us form", function () {
     expect($('#content h3')).not.toBeVisible();
   });
 });
+
+describe("Items search", function () {
+  it("should show results in case multiple items matches", function () {
+    const app= new App();
+    const searchRule ='MacBook'
+
+    app.homePage.open('/');
+    app.homePage.searchInput.setValue(searchRule);
+    app.homePage.searchButton.click();
+
+    browser.waitUntil(() => app.homePage.hasSearch(), {
+      timeoutMsg: "Expected return page is opened",
+    });
+
+    expect(app.homePage.searchResult).toHaveTextContaining(searchRule);
+  });
+
+  it("should redirect to 'no matching results' in case no items matched", function () {
+    const app= new App();
+    const searchRule ='OLOLOLO';
+    const noSearchResultMessage = 'There is no product that matches the search criteria.'
+    
+    app.homePage.open('/');
+    app.homePage.searchInput.setValue(searchRule);
+    app.homePage.searchButton.click();
+
+    app.homePage.noSearchResultMessage.isDisplayed();
+    expect(app.homePage.noSearchResultMessage).toHaveTextContaining(noSearchResultMessage);
+
+  });
+});
