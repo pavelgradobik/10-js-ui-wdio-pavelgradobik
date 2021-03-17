@@ -1,11 +1,7 @@
-export class wishListComponents{
+export class WishListComponents{
     constructor(private root: WebdriverIO.Element){
 
     }
 
-    productTitle(): string{
-        return this.root.$('a').getText();
-    }
 
-    
 }

@@ -12,6 +12,10 @@ export class ReturnCustomerPage{
         return $('[value="Login"]');
     }
 
+    openLoginPage(url: string){
+        browser.url(url);
+    }
+
     isOpen(): boolean{
         return this.loginButton.isDisplayed();
     }
@@ -22,4 +26,6 @@ export class ReturnCustomerPage{
         this.passwordInput.setValue(logData.password);
         this.loginButton.click();
     }
+
+
 }

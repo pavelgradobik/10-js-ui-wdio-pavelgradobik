@@ -8,22 +8,46 @@ export class ProductCategoryPage {
         browser.url(url);
     }
 
+    isOpen(): boolean{
+        return $('#product-category h2').isDisplayed();
+    }
+
+    
+    succesMessageHasShown(): boolean{
+        return this.productSuccessWishListAdd.isDisplayed();
+    }
+    
+    goToWishlist(){
+        const wishListLink = $("#wishlist-total");
+        wishListLink.isDisplayed();
+        wishListLink.click();
+    }
+    
     get products(): ProductCardComponent[] {
         return $$('div.product-layout').map(elem => {
             return new ProductCardComponent(elem)
         })
     }
-
+    
     get productSuccessWishListAdd(){
         return $('[class*="alert-success"]');
     }
-
-    succesMessageHasShown(): boolean{
-        return this.productSuccessWishListAdd.isDisplayed();
-    }
-
+    
     get productComparePageLink(){
         return $('.form-group a[href*="product/compare"]');
     }
+
+    openShoppingCartAndGetProduct(productName)
+    {
+        const cartDropDown = $("#cart");
+        cartDropDown.isDisplayed()
+        cartDropDown.click()
+        const productImageAtCartDropDown = $(`img[title="${productName}"]`);
+        return productImageAtCartDropDown;
+        
+    }
+    
+    
+
 
 }

@@ -24,6 +24,6 @@ export class ProductCardComponent {
     compareThisProduct() {
         const addToCompareButton = this.root.$('button[onclick*="compare.add"] i.fa-exchange');
         expect(addToCompareButton).toBeVisible({message: 'Expect add To compare is visible'});
-        addToCompareButton.cliuck();
+        addToCompareButton.click();
     }
 }

@@ -6,6 +6,10 @@ export class RegisterAccountPage {
     constructor(){
         this.registerAccountComponents = new RegisterAccountComponents();
     }
+    
+    open(url: string){
+        browser.url(url);
+    }
 
     isOpened(): boolean{
         return $('#account-register h1').isDisplayed();

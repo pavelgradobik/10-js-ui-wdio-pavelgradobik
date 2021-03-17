@@ -3,6 +3,14 @@ export class TopLinks {
         return $('nav#top')
     }
 
+    get loginButton(){
+        return $('a[href*="/login"]');
+    }
+
+    get shoppingCartLink(){        
+       return this.root.$('[title="Shopping Cart"]'); 
+    } 
+
     openCheckout() {
         const checkoutButton = this.root.$('a[title="Checkout"]') 
         expect(checkoutButton).toBeVisible({message: "checkout is able at the header"});

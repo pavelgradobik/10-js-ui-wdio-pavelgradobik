@@ -6,9 +6,28 @@ export class WishListPage{
         return $('#content h2').isDisplayed();
     }
 
-    get wishProducts(): wishListComponents[]{
-        return $$('#content [class="text-left"]').map(elem => {
-            return new wishListComponents(elem);
-        })
+    private get root(): WebdriverIO.Element {
+        return $('#content [class="text-left"]')
+    }
+
+    productAtWishListIsVisible(prodName){
+        let productInWishListTable = $(`img[title="${prodName}"]`);
+        return productInWishListTable;
+    }
+
+    productTitle(): string{
+        return this.root.$('#content [class="text-left"] a').getText();
+    }
+
+    addtoCartFromWishlist(){
+        const addToCartButton = $('#content button .fa-shopping-cart');
+        addToCartButton.isDisplayed();
+        addToCartButton.click();
+    }
+
+    removeFromWishList(){
+        const removeButton = $('#content a .fa-times');
+        removeButton.isDisplayed();
+        removeButton.click();
     }
 }
