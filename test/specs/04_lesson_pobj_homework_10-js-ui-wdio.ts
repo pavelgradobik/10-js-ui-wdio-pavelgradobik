@@ -1,4 +1,5 @@
 import { App } from '../../application/application';
+import { cleanUpCart } from '../../application/utils/clear-shopping-cart.helper';
 // import { userRegistration } from '../../application/utils/user-registration.helper';
 import { productsToWishList } from '../../testData/products-wishlist';
 
@@ -152,9 +153,16 @@ describe('Items', function () {
       expect(app.shoppingCart.shoppingCartTitle).toHaveTextContaining(
         'Shopping Cart'
       );
-      app.shoppingCart.productToSearch = product.name;
-      expect(app.shoppingCart.productFromCart.getText()).toExist();
-      app.shoppingCart.removeFromCartButton.click();
+      
+      expect(app.shoppingCart.shoppingCartTitle).toBeDisplayed();
+      expect(app.shoppingCart.shoppingCartTitle).toHaveTextContaining(
+        'Shopping Cart'
+      );
+
+      expect($(`img[title="${product.name}"]`)).toBeVisible();
+
+      cleanUpCart();
+
     });
   });
 
@@ -202,8 +210,10 @@ describe('Items', function () {
         'Shopping Cart'
       );
 
+      expect($(`img[title="${product.name}"]`)).toBeVisible();
 
-      app.shoppingCart.removeFromCartButton.click();
+      cleanUpCart();
+    
     });
   });
 });

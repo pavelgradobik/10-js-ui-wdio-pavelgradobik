@@ -12,6 +12,7 @@ export class ShoppingCart {
   get removeFromCartButton() {
     return $('[data-original-title="Remove"]');
   }
+
   
 
   // set productToSearch(value: string){
