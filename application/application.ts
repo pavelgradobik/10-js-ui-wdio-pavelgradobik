@@ -27,8 +27,6 @@ export class App {
     productMenu: TopMenuComponents;
     shoppingCart: ShoppingCart;
 
-    
-
     constructor(){
         this.returnPage = new ReturnPage();
         this.returnConfirmation = new ReturnConfirmationPage();
