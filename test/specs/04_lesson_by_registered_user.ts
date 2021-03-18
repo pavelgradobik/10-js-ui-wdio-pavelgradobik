@@ -13,7 +13,7 @@ describe('Product can be bought', function () {
     browser.deleteCookies();
   });
 
-  it('by a newly registered user', function () {
+  it.skip('by a newly registered user', function () {
     const app = new App();
 
     app.loginPage.openLoginPage('/index.php?route=account/login');
@@ -70,6 +70,68 @@ describe('Product can be bought', function () {
     // );
     app.checkoutPage.deliveryMethod.continueButton();
 
+    app.checkoutPage.paymentMethod.termsAndConditionsCheckboxAgree();
+    app.checkoutPage.paymentMethod.continueButton();
+
+    app.checkoutPage.confirmOrder.confirmButtonClick();
+
+    browser.waitUntil(() => app.checkoutPage.orderConfirmation.isOpened(), {
+      timeoutMsg: 'Expected Products page is opened',
+    });
+  });
+
+  it('by a guest', function () {
+    const app = new App();
+    app.homePage.open('/index.php?route=common/home');
+
+    app.productMenu.mp3PlayersMenuButton.click();
+    app.productMenu.openAllMp3PlayersList.click();
+
+    browser.waitUntil(() => app.productCategoryPage.isOpen(), {
+      timeoutMsg: 'Expected Products page is opened',
+    });
+
+    const iPodClassic = app.productCategoryPage.products.find(
+      (player) => player.title() === 'iPod Classic'
+    );
+    iPodClassic.addToCart();
+    app.productCategoryPage.topLinks.openCheckout();
+
+    app.checkoutPage.checkoutOptions.newCustomerCheckOutoption('guest');
+    app.checkoutPage.checkoutOptions.continue();
+
+    app.checkoutPage.accountAndBillingDetails.fillAllAddresses({
+      firstName: Math.random().toString(36).substring(3),
+      lastName: Math.random().toString(36).substring(3),
+      email: `${Math.random().toString(36).substring(3)}@mail.mail`,
+      telephone: '+385656566565',
+      company: Math.random().toString(36).substring(3),
+      address1: Math.random().toString(36).substring(3),
+      address2: Math.random().toString(36).substring(3),
+      city: 'Kyiv',
+      postCode: '04222',
+      country: 'Ukraine',
+      region: 'Kyiv'
+    });
+
+    app.checkoutPage.accountAndBillingDetails.deliveryEquialsBillingCheckbox();
+    app.checkoutPage.accountAndBillingDetails.continueButton();
+
+    app.checkoutPage.deliveryDetails.fillDeliveryAddress({
+      firstName: Math.random().toString(36).substring(3),
+      lastName: Math.random().toString(36).substring(3),
+      company: Math.random().toString(36).substring(3),
+      address1: Math.random().toString(36).substring(3),
+      city: 'Kyiv',
+      postCode: '04044',
+      country: 'Ukraine',
+      region: 'Kyiv',
+    });
+    app.checkoutPage.deliveryDetails.continueButtonGuest();
+
+    browser.pause(300);
+
+    app.checkoutPage.deliveryMethod.continueButton();
 
     app.checkoutPage.paymentMethod.termsAndConditionsCheckboxAgree();
     app.checkoutPage.paymentMethod.continueButton();
@@ -80,6 +142,5 @@ describe('Product can be bought', function () {
       timeoutMsg: 'Expected Products page is opened',
     });
 
-    browser.pause(10000);
   });
 });

@@ -31,6 +31,15 @@ export class DeliveryDetails {
     cButton.click();
   }
 
+  continueButtonGuest(){
+    const cgButton = this.root.$('input#button-guest-shipping');
+    expect(cgButton).toBeVisible({
+      message: 'continue for guest button did not available',
+    });
+    cgButton.click();
+    
+  }
+
   fillDeliveryAddress(data: IDeliveryAdress) {
     this.root.$('#input-shipping-firstname').setValue(data.firstName);
     this.root.$('#input-shipping-lastname').setValue(data.lastName);

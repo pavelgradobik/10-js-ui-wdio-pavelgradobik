@@ -3,7 +3,7 @@ interface IAccountAndBilling {
   lastName: string;
   email: string;
   telephone: string;
-  password: string;
+  // password: string;
   company: string;
   address1: string;
   address2: string;
