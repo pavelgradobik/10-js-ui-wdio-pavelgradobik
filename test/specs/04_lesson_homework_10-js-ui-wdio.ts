@@ -45,7 +45,7 @@ describe("Items", function () {
 
     //#region registration
     browser.url("/index.php?route=account/register");
-    browser.acceptAlert(); // there is a browser alert pop-up, so this needed.
+    // browser; // there is a browser alert pop-up, so this needed.
     firstNameInput.setValue(Math.random().toString(36).substring(3));
     lastNameInput.setValue(Math.random().toString(36).substring(3));
     emailInput.setValue(emailAdress);
@@ -54,6 +54,7 @@ describe("Items", function () {
     confirmPasswordInput.setValue(password);
     privacyPolicyCheckbox.click();
     continueButton.click();
+    
     //#endregion
   });
 

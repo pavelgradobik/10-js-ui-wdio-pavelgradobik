@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { ReturnPageComponents } from "./components/return-page.componets";
+=======
+import { ReturnPageComponents } from "./components/return-page.component";
+>>>>>>> 10-js-wdio-pavlo-gradobik_sixth_lesson_tests
 
 export class ReturnPage {
     

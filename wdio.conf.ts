@@ -19,7 +19,7 @@ exports.config = {
     specs: [
         // './test/specs/**/*.ts'
         // './test/specs/04_lesson_homework_10-js-ui-wdio.ts'
-        './test/specs/02_lesson_pobj_10-js-ui-wdio.ts'
+        './test/specs/04_lesson_pobj_homework_10-js-ui-wdio.ts'
     ],
     // Patterns to exclude.
     exclude: [
@@ -95,7 +95,7 @@ exports.config = {
     baseUrl: 'http://ip-6147.proline.net.ua:10082/',
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 10000,
+    waitforTimeout: 120000,
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response

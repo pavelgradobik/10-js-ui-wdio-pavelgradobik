@@ -1,4 +1,4 @@
-import { ContactUsComponents } from "./components/contact-us.components";
+import { ContactUsComponents } from "./components/contact-us.component";
 
 
 export class ContactUsPage{
