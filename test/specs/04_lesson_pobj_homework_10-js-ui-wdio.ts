@@ -99,6 +99,8 @@ describe('Items', function () {
     it(`${product.name} can be selected for comparison by guest`, function () {
       const app = new App();
 
+      app.homePage.open('b/index.php?route=common/home');
+
       app.productMenu.mp3PlayersMenuButton.click();
       app.productMenu.openAllMp3PlayersList.click();
 
@@ -127,6 +129,8 @@ describe('Items', function () {
   productsToWishList.map((product) => {
     it(`${product.name} can be added to cart by guest`, function () {
       const app = new App();
+
+      app.homePage.open('b/index.php?route=common/home');
 
       app.productMenu.mp3PlayersMenuButton.click();
       app.productMenu.openAllMp3PlayersList.click();
@@ -159,7 +163,8 @@ describe('Items', function () {
         'Shopping Cart'
       );
 
-      expect($(`img[title="${product.name}"]`)).toBeVisible();
+      // expect($(`img[title="${product.name}"]`)).toBeVisible();
+      expect(app.shoppingCart.productQuantity).toEqual(1);
 
       cleanUpCart();
 
@@ -169,6 +174,8 @@ describe('Items', function () {
   productsToWishList.map((product) => {
     it('can be added to cart by registered user', function () {
       const app = new App();
+
+      app.homePage.open('b/index.php?route=common/home');
 
       app.loginPage.openLoginPage('/index.php?route=account/login');
       browser.waitUntil(() => app.loginPage.isOpen(), {
@@ -210,7 +217,9 @@ describe('Items', function () {
         'Shopping Cart'
       );
 
-      expect($(`img[title="${product.name}"]`)).toBeVisible();
+      expect(app.shoppingCart.productQuantity).toEqual(1);
+
+      // expect($(`img[title="${product.name}"]`)).toBeVisible();
 
       cleanUpCart();
     

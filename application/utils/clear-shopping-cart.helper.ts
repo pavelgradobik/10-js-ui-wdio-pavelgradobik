@@ -1,8 +1,6 @@
 export function cleanUpCart() {
-  const allItems = $$('#content button[data-original-title="Remove"]');
-  allItems.find((element) => {
-    expect(element).toBeClickable();
-    element.click();
-  });
+  const removeItemsButton = $('#content button[data-original-title="Remove"]');
+  removeItemsButton.isClickable();
+  removeItemsButton.click();
   expect($('#content p')).toHaveTextContaining('shopping cart is empty');
 }
