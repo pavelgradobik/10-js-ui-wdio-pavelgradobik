@@ -34,6 +34,7 @@ export class DeliveryDetails {
   fillDeliveryAddress(data: IDeliveryAdress) {
     this.root.$('#input-shipping-firstname').setValue(data.firstName);
     this.root.$('#input-shipping-lastname').setValue(data.lastName);
+    this.root.$('#input-shipping-company').setValue(data.company);
     this.root.$('#input-shipping-address-1').setValue(data.address1);
     this.root.$('#input-shipping-city').setValue(data.city);
     this.root.$('#input-shipping-postcode').setValue(data.postCode);

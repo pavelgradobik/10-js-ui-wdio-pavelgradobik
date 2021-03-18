@@ -5,6 +5,7 @@ import { DeliveryMethodComponent } from "./components/04-delivery-method.compone
 import { PaymentMethodComponent } from "./components/05-payment-method.component";
 import { ConfirmOrderComponent } from "./components/06-confirm-order.component";
 import { AccountAndBillingDetailsComponent } from "./components/07-account-and-billing-details.component";
+import { OrderConfirmation } from "./components/08-confirmation-order.component";
 
 
 export class CheckoutPage {
@@ -37,6 +38,11 @@ export class CheckoutPage {
     get accountAndBillingDetails() {
         return new AccountAndBillingDetailsComponent();
     }
+
+    get orderConfirmation(){
+        return new OrderConfirmation();
+    }
+    
     open(url: string) {
         browser.url('/index.php?route=checkout/checkout');
     }

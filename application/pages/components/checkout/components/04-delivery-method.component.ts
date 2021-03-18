@@ -3,12 +3,14 @@ export class DeliveryMethodComponent {
     return $('div#collapse-shipping-method').parentElement();
   }
 
-  get commentToOrderInput() {
-    return this.root.$('[name="comment"]');
+  commentForOrderInput(valueToInput: string) {
+    const inputField = this.root.$('[name="comment"]');
+    expect(inputField).toBeVisible({message: 'imput field did not visible'});
+    inputField.setValue(valueToInput);
   }
 
-  continueButton(): void {
-    const cButton = this.root.$('input#button-shipping-address');
+  continueButton(){
+    const cButton = this.root.$('input#button-shipping-method');
     expect(cButton).toBeVisible({
       message: 'continue button did not available',
     });

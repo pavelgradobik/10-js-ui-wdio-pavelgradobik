@@ -35,8 +35,51 @@ describe('Product can be bought', function () {
     iPodClassic.addToCart();
     app.productCategoryPage.topLinks.openCheckout();
 
-    browser.pause(10000)
+    app.checkoutPage.billingDetails.fillInBillingdetails({
+      firstName: Math.random().toString(36).substring(3),
+      lastName: Math.random().toString(36).substring(3),
+      company: Math.random().toString(36).substring(3),
+      address1: Math.random().toString(36).substring(3),
+      city: Math.random().toString(36).substring(3),
+      postCode: Math.random().toString(36).substring(3),
+      country: 'Ukraine',
+      region: 'Kyiv',
+    });
+
+    app.checkoutPage.billingDetails.continueButtonClick();
+
+    browser.pause(300); // can't find the solution for such small pause between menu openings;
+
+    app.checkoutPage.deliveryDetails.selectExistingOrNewAdressCheckbox('new');
+    app.checkoutPage.deliveryDetails.fillDeliveryAddress({
+      firstName: Math.random().toString(36).substring(3),
+      lastName: Math.random().toString(36).substring(3),
+      company: Math.random().toString(36).substring(3),
+      address1: Math.random().toString(36).substring(3),
+      city: 'Kyiv',
+      postCode: '04044',
+      country: 'Ukraine',
+      region: 'Kyiv',
+    });
+    app.checkoutPage.deliveryDetails.continueButton();
+
+    browser.pause(300); // can't find the solution for such small pause between menu openings;
+
+    // app.checkoutPage.deliveryMethod.commentForOrderInput(
+    //   Math.random().toString(36).substring(3)
+    // );
+    app.checkoutPage.deliveryMethod.continueButton();
 
 
+    app.checkoutPage.paymentMethod.termsAndConditionsCheckboxAgree();
+    app.checkoutPage.paymentMethod.continueButton();
+
+    app.checkoutPage.confirmOrder.confirmButtonClick();
+
+    browser.waitUntil(() => app.checkoutPage.orderConfirmation.isOpened(), {
+      timeoutMsg: 'Expected Products page is opened',
+    });
+
+    browser.pause(10000);
   });
 });

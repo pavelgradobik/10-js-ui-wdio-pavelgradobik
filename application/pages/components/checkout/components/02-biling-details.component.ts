@@ -20,7 +20,7 @@ export class BillingDetailsComponentP{
         this.root.$('#input-payment-firstname').setValue(data.firstName);
         this.root.$('#input-payment-lastname').setValue(data.lastName);
         this.root.$('#input-payment-company').setValue(data.company);
-        this.root.$('#input-payment-telephone').setValue(data.telephone);
+        
         this.root.$('#input-payment-address-1').setValue(data.address1);
         this.root.$('#input-payment-city').setValue(data.city);
         this.root.$('#input-payment-postcode').setValue(data.postCode);

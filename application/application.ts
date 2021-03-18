@@ -1,4 +1,5 @@
 import { CompareProductsPage } from "./pages/compare-products.page";
+import { CheckoutPage } from "./pages/components/checkout/index";
 import { TopMenuComponents } from "./pages/components/top-menu.component";
 import { ContactUsPage } from "./pages/contact-us.page";
 import { GiftVoucherConfirmationPage } from "./pages/gift-voucher-send-confirmation.page";
@@ -26,6 +27,7 @@ export class App {
     wishListPage: WishListPage;
     productMenu: TopMenuComponents;
     shoppingCart: ShoppingCart;
+    checkoutPage: CheckoutPage;
 
     constructor(){
         this.returnPage = new ReturnPage();
@@ -41,5 +43,6 @@ export class App {
         this.wishListPage = new WishListPage();
         this.productMenu = new TopMenuComponents();
         this.shoppingCart = new ShoppingCart();
+        this.checkoutPage = new CheckoutPage();
     }
 }
