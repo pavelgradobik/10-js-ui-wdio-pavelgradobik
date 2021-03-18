@@ -13,7 +13,7 @@ describe('Product can be bought', function () {
     browser.deleteCookies();
   });
 
-  it.skip('by a newly registered user', function () {
+  it('by a newly registered user', function () {
     const app = new App();
 
     app.loginPage.openLoginPage('/index.php?route=account/login');
@@ -91,11 +91,14 @@ describe('Product can be bought', function () {
       timeoutMsg: 'Expected Products page is opened',
     });
 
+
     const iPodClassic = app.productCategoryPage.products.find(
       (player) => player.title() === 'iPod Classic'
     );
     iPodClassic.addToCart();
     app.productCategoryPage.topLinks.openCheckout();
+
+    browser.pause(1000);
 
     app.checkoutPage.checkoutOptions.newCustomerCheckOutoption('guest');
     app.checkoutPage.checkoutOptions.continue();
