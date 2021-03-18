@@ -8,7 +8,7 @@ export function userRegistration(uniqMail: string, uniqPass: string): void{
     app.customerRegistrationPage.fillRegistrationForm({
         firstName: Math.random().toString(36).substring(3),
         lastName: Math.random().toString(36).substring(3),
-        email: `${uniqMail}@mail.mail`,
+        email: uniqMail,
         telephone: `+${Math.random().toString().slice(2, 11)}`,
         password: uniqPass,
         confirmPassword: uniqPass

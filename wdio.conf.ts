@@ -19,7 +19,7 @@ exports.config = {
     specs: [
         // './test/specs/**/*.ts'
         // './test/specs/04_lesson_homework_10-js-ui-wdio.ts'
-        './test/specs/04_lesson_pobj_homework_10-js-ui-wdio.ts'
+        './test/specs/04_lesson_by_registered_user.ts'
     ],
     // Patterns to exclude.
     exclude: [

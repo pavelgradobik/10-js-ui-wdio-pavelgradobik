@@ -59,7 +59,7 @@ describe("Items", function () {
   });
 
   afterEach(function () {
-    browser.deleteAllCookies();
+    browser.deleteCookies();
   });
 
   productsToWishList.map((product) => {
