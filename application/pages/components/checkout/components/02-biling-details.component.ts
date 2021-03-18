@@ -9,6 +9,12 @@ export class BillingDetailsComponentP{
         continueButton.click();
     }
 
+    bilingExistedNewCheckbox(select: string){
+        const selectAdressCheckbox = this.root.$(`input[value="${select}"]`);
+        expect(selectAdressCheckbox).toBeVisible({message: 'Checkbox did not available'});
+        selectAdressCheckbox.click();
+    }
+
     fillInBillingdetails(data: IBilingDetails){
 
         this.root.$('#input-payment-firstname').setValue(data.firstName);
@@ -20,7 +26,7 @@ export class BillingDetailsComponentP{
         this.root.$('#input-payment-postcode').setValue(data.postCode);
         this.root.$('#input-payment-country').selectByVisibleText(data.country);
         this.root.$('#input-payment-zone').selectByVisibleText(data.region);
-        
+
     }
 
 
