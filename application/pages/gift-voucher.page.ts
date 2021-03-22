@@ -1,4 +1,4 @@
-import { GiftVoucherComponents } from "./components/gift-voucher.component";
+import { GiftVoucherComponents } from "./components/gift-voucher/components/gift-voucher.component";
 
 export class GiftVoucherPage{
 

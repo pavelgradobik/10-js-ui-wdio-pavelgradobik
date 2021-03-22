@@ -1,4 +1,4 @@
-import { App } from "../application";
+import { App } from "../application/application";
 
 export function userRegistration(uniqMail: string, uniqPass: string): void{
     const app = new App();

@@ -1,5 +1,5 @@
 import { App } from '../../application/application';
-import { userRegistration } from '../../application/utils/user-registration.helper';
+import { userRegistration } from '../../utils/user-registration.helper';
 
 describe('Product can be bought', function () {
   const newEmailAdress = `${Math.random().toString(36).substring(3)}@mail.mail`;

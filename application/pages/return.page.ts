@@ -1,5 +1,5 @@
 
-import { ReturnPageComponents } from "./components/return-page.component";
+import { ReturnPageComponents } from "./components/login/components/return-page.component";
 
 export class ReturnPage {
     

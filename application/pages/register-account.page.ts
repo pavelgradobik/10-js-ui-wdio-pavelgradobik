@@ -1,4 +1,4 @@
-import { RegisterAccountComponents } from "./components/register-account.component";
+import { RegisterAccountComponents } from "./components/register-account/components/register-account.component";
 
 export class RegisterAccountPage {
 

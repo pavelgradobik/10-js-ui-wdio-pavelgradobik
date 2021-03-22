@@ -1,7 +1,7 @@
 import { App } from '../../application/application';
-import { cleanUpCart } from '../../application/utils/clear-shopping-cart.helper';
+import { cleanUpCart } from '../../utils/clear-shopping-cart.helper';
 // import { userRegistration } from '../../application/utils/user-registration.helper';
-import { productsToWishList } from '../../testData/products-wishlist';
+import { productsToWishList } from '../../testData/wish-list/products-wishlist';
 
 describe('Items', function () {
   const emailAdress = 'lastname@mail.mail';

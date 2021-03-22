@@ -1,5 +1,5 @@
 import { ProductCardComponent } from "./components/product-card.component";
-import { TopLinks } from "./components/top-links.component"
+import { TopLinks } from "./components/top-links/components/top-links.component"
 
 export class ProductCategoryPage {
     topLinks: TopLinks = new TopLinks();

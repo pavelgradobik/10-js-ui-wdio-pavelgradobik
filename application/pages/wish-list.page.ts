@@ -1,4 +1,4 @@
-import { wishListComponents } from "./components/wish-list.component";
+// import { wishListComponents } from "./components/wish-list/components/wish-list.component";
 
 export class WishListPage{
 
