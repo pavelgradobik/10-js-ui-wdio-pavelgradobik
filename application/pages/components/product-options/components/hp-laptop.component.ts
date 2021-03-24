@@ -15,7 +15,7 @@ export class HPLaptopComponent{
 
   }
 
-  setQuantityToBy(quantity: string){
+  setQuantityToBuy(quantity: string){
       const quantityInput = this.root.$('input[name="quantity"]');
       quantityInput.isDisplayed()
       quantityInput.setValue(quantity);
