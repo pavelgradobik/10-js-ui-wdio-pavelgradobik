@@ -26,4 +26,8 @@ export class HPLaptopComponent{
     addToCartButton.isDisplayed();
     addToCartButton.click();
   }  
+
+  get laptopPrice(){
+    return this.root.$('h2');
+  }
 }

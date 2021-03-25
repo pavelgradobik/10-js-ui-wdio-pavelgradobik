@@ -37,5 +37,9 @@ export class CanonCameraComponent {
     const addToCartButton = this.root.$('#button-cart');
     addToCartButton.isDisplayed();
     addToCartButton.click();
-  }  
+  } 
+  
+  get canonCameraPrice(){
+    return this.root.$('h2');
+  }
 }
